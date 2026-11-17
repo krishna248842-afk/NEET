@@ -1,0 +1,46 @@
+name: Build MemoNeet Android APK
+
+on:
+  push:
+    branches:
+      - arena/9b5af5ea-neet
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  apk:
+    name: Build installable debug APK
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+      - name: Install Android platform
+        run: sdkmanager "platforms;android-36" "build-tools;36.0.0"
+      - name: Install JavaScript packages
+        run: npm ci
+      - name: Build web app and sync Android project
+        run: npm run build && npx cap sync android
+      - name: Build APK
+        run: ./gradlew --no-daemon assembleDebug
+        working-directory: android
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: MemoNeet-Android-APK
+          path: android/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
+          retention-days: 30
