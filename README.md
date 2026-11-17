@@ -27,7 +27,7 @@ The APK build uses Capacitor and packages the web app locally; once installed, i
 
 ## Content and study note
 
-The bundled bank contains 360 original, NCERT-aligned practice items (36 foundational concepts expressed in 10 prompt formats each, across 32 chapter headings; three stages: Class 11, Class 12, and NEET-pattern practice), with four options and explanations. It is a useful starter practice set, not a complete line-by-line question bank for every NCERT sentence or a substitute for textbook coverage. These are not a verbatim copy of NCERT and the NEET-pattern prompts are not represented as verified official previous-year questions. The app supports creating, editing, and deleting your own questions. Use NCERT textbooks and official exam resources as the source of truth. No app or question bank can guarantee qualifying an exam.
+The bundled bank now contains 400 items. The Living World has 50 individually authored original MCQs, each with four options and an explanation. Most other chapters still contain starter practice prompts built from a smaller set of concepts; this is not yet 300–400 unique questions per chapter and must not be mistaken for complete NCERT coverage. Questions are original and NCERT-aligned, not a verbatim line-by-line reproduction. NEET-pattern items are not represented as verified official previous-year questions. The app supports creating, editing, and deleting your own questions. Use NCERT textbooks and official exam resources as the source of truth. No app or question bank can guarantee qualifying an exam.
 
 ## Data and privacy
 

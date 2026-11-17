@@ -1,3 +1,5 @@
+import { livingWorldQuestions } from './livingWorld.js';
+
 const concepts = [
   {stage:'Class 11',chapter:'The Living World',topic:'Taxonomy',q:'The basic unit of classification is the',a:'species',d:['genus','family','order'],e:'A species is the basic unit of taxonomy: its members share fundamental similarities and can generally interbreed to produce fertile offspring.'},
   {stage:'Class 11',chapter:'Biological Classification',topic:'Five-kingdom system',q:'In Whittaker’s five-kingdom classification, organisms with a prokaryotic cell organisation belong to',a:'Monera',d:['Protista','Fungi','Plantae'],e:'Monera contains prokaryotes, including bacteria and cyanobacteria. The other kingdoms are composed of eukaryotic organisms.'},
@@ -50,8 +52,8 @@ const stems = [
   c => `Recall the key fact from ${c.chapter}: ${c.q}`,
 ];
 const shuffle = (xs, seed) => { const a=[...xs]; let n=seed+17; for(let i=a.length-1;i>0;i--){n=(n*9301+49297)%233280;const j=Math.floor(n/233280*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; };
-export const questionBank = concepts.flatMap((c, ci) => Array.from({length:10},(_,vi)=>{
+export const questionBank = [...livingWorldQuestions, ...concepts.filter(c=>c.chapter!=='The Living World').flatMap((c, ci) => Array.from({length:10},(_,vi)=>{
   const opts=shuffle([c.a,...c.d],ci*19+vi*7), exam=vi>=6;
   return {id:`seed-${ci}-${vi}`, stage:exam?'NEET practice':c.stage, classStage:c.stage, chapter:c.chapter, topic:c.topic, type:exam?'Pattern practice':'NCERT concept', question:stems[vi](c), options:opts, answer:opts.indexOf(c.a), explanation:c.e, source:exam?'Original NEET-pattern practice · not an official PYQ':'Original NCERT-aligned practice'};
-}));
+}))];
 export const chapters = [...new Set(questionBank.map(q=>q.chapter))];
